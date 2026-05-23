@@ -1,0 +1,8 @@
+bin/
+obj/
+.vs/
+*.user
+.azurite/
+
+# НИКОГДА не добавляйте в git — содержит строки подключения!
+local.settings.json
