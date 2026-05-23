@@ -1,5 +1,10 @@
 <Solution>
   <Project Path="AzureBasicWebApplication/AzureBasicWebApplication.csproj" />
+  <Project Path="AzureFunctionsAndStorageSample/AzureFunctionsAndStorageSample.csproj" />
+  <Project Path="AzureFunctionsDemo/AzureFunctionsDemo.csproj" />
+  <Project Path="MessageBrockers/FunctionProcessor/FunctionProcessor.csproj" />
+  <Project Path="MessageBrockers/SharedContracts/SharedContracts.csproj" />
+  <Project Path="MessageBrockers/WebAppGateway/WebAppGateway.csproj" />
   <Project Path="TestWebApplication/TestWebApplication.csproj" />
   <Project Path="WebApplication1/WebApplication1.csproj" />
   <Project Path="WebApplication2/WebApplication2.csproj" />

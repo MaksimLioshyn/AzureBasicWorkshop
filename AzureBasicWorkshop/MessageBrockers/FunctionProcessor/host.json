@@ -1,0 +1,28 @@
+{
+  "version": "2.0",
+  "logging": {
+    "applicationInsights": {
+      "samplingSettings": {
+        "isEnabled": true,
+        "excludedTypes": "Request"
+      }
+    }
+  },
+  "extensions": {
+    "serviceBus": {
+      "prefetchCount": 32,
+      "messageHandlerOptions": {
+        "autoCompleteMessages": false,
+        "maxConcurrentCalls": 8,
+        "maxAutoLockRenewalDuration": "00:05:00"
+      }
+    },
+    "eventHubs": {
+      "batchCheckpointFrequency": 1,
+      "eventProcessorOptions": {
+        "maxBatchSize": 100,
+        "prefetchCount": 300
+      }
+    }
+  }
+}

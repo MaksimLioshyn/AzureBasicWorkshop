@@ -1,0 +1,90 @@
+### Azure Functions Demo — HTTP Tests
+### Используйте расширение "REST Client" для VS Code (humao.rest-client)
+### Базовый URL: http://localhost:7071 (func start)
+
+@baseUrl = http://localhost:7071/api
+
+# ─── GET все заказы ──────────────────────────────────────────────────────────
+
+### GET /api/orders — список последних 20 заказов
+GET {{baseUrl}}/orders
+Accept: application/json
+
+###
+
+# ─── GET заказ по ID ─────────────────────────────────────────────────────────
+
+### GET /api/orders/{id} — существующий (демо-данные)
+GET {{baseUrl}}/orders/order-001
+Accept: application/json
+
+###
+
+### GET /api/orders/{id} — несуществующий → 404
+GET {{baseUrl}}/orders/order-999
+Accept: application/json
+
+###
+
+# ─── POST создание заказа ────────────────────────────────────────────────────
+
+### POST /api/orders — корректный заказ
+### После создания: посмотрите логи — QueueTrigger обработает его через ~2 сек
+POST {{baseUrl}}/orders
+Content-Type: application/json
+
+{
+  "customerId": "customer-test",
+  "customerEmail": "student@university.com",
+  "items": [
+    {
+      "productId": "prod-azure-1",
+      "name": "Azure Functions T-Shirt",
+      "quantity": 2,
+      "unitPrice": 29.99
+    },
+    {
+      "productId": "prod-cosmos-1",
+      "name": "Cosmos DB Mug",
+      "quantity": 1,
+      "unitPrice": 14.99
+    }
+  ],
+  "notes": "Подарочная упаковка, пожалуйста"
+}
+
+###
+
+### POST /api/orders — невалидный запрос (нет customerId) → 400
+POST {{baseUrl}}/orders
+Content-Type: application/json
+
+{
+  "items": [
+    { "productId": "p1", "name": "Test", "quantity": 1, "unitPrice": 10.00 }
+  ]
+}
+
+###
+
+### POST /api/orders — некорректный JSON → 400
+POST {{baseUrl}}/orders
+Content-Type: application/json
+
+{ this is not valid json }
+
+###
+
+# ─── PATCH отмена заказа ─────────────────────────────────────────────────────
+
+### PATCH /api/orders/{id}/cancel — отменить существующий заказ
+PATCH {{baseUrl}}/orders/order-002/cancel
+Accept: application/json
+
+###
+
+### PATCH /api/orders/{id}/cancel — несуществующий → 404
+PATCH {{baseUrl}}/orders/order-999/cancel
+Accept: application/json
+
+###

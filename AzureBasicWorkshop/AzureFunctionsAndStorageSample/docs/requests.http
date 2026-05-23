@@ -1,0 +1,40 @@
+@baseUrl = http://localhost:7071/api
+
+### Получить краткую информацию о проекте
+GET {{baseUrl}}/info
+
+### Создать demo-инфраструктуру в storage account
+POST {{baseUrl}}/setup
+
+### Загрузить blob
+POST {{baseUrl}}/blobs/upload
+Content-Type: application/json
+
+{
+  "fileName": "hello.txt",
+  "content": "Hello from Azure Functions and Storage sample"
+}
+
+### Скачать blob
+GET {{baseUrl}}/blobs/hello.txt
+
+### Отправить сообщение в очередь
+POST {{baseUrl}}/queues/send
+Content-Type: application/json
+
+{
+  "message": "sample queue message"
+}
+
+### Сохранить запись в таблицу
+POST {{baseUrl}}/tables/save
+Content-Type: application/json
+
+{
+  "partitionKey": "demo",
+  "rowKey": "001",
+  "payload": "record created from HTTP endpoint"
+}
+
+### Прочитать запись из таблицы
+GET {{baseUrl}}/tables/demo/001
