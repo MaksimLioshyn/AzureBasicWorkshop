@@ -1,0 +1,21 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">@(ViewData["AppTitle"] ?? "Welcome")</h1>
+    <p>@ViewData["WelcomeMessage"]</p>
+</div>
+
+<div class="mt-4">
+    <h5>Secrets from Azure Key Vault:</h5>
+    <table class="table table-bordered w-50">
+        <thead class="table-dark">
+            <tr><th>Key</th><th>Value</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>AppTitle</td><td>@ViewData["AppTitle"]</td></tr>
+            <tr><td>WelcomeMessage</td><td>@ViewData["WelcomeMessage"]</td></tr>
+        </tbody>
+    </table>
+</div>

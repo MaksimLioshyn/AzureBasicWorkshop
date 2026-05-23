@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <ApplicationInsightsResourceId>/subscriptions/34aff902-3570-4bd8-94bc-da55fdc851c8/resourceGroups/az-test/providers/microsoft.insights/components/TestWebApplication</ApplicationInsightsResourceId>
+    <UserSecretsId>f74b37b5-a9f8-4184-83e1-13f8ee1f0fe9</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Azure.Identity" Version="1.17.1" />
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.23.0" />
+  </ItemGroup>
+
+</Project>

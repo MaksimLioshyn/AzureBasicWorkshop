@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="AzureBasicWebApplication/AzureBasicWebApplication.csproj" />
+  <Project Path="TestWebApplication/TestWebApplication.csproj" />
+  <Project Path="WebApplication1/WebApplication1.csproj" />
+  <Project Path="WebApplication2/WebApplication2.csproj" />
+</Solution>
