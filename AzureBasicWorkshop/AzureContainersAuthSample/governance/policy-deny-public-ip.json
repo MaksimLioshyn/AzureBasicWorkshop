@@ -1,0 +1,17 @@
+{
+  "properties": {
+    "displayName": "Deny public IP creation",
+    "description": "Blocks creation of public IP resources to reduce exposed attack surface.",
+    "policyType": "Custom",
+    "mode": "All",
+    "policyRule": {
+      "if": {
+        "field": "type",
+        "equals": "Microsoft.Network/publicIPAddresses"
+      },
+      "then": {
+        "effect": "deny"
+      }
+    }
+  }
+}

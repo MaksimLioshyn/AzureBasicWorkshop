@@ -1,0 +1,9 @@
+{
+  "name": "webapp-cd-hook",
+  "scope": "webapp",
+  "actions": [
+    "push"
+  ],
+  "status": "enabled",
+  "serviceUri": "https://<web-app-name>.scm.azurewebsites.net/docker/hook"
+}

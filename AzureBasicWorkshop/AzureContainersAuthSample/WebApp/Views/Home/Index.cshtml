@@ -1,0 +1,133 @@
+﻿@{
+    ViewData["Title"] = "Главная";
+}
+
+<div class="p-4 bg-primary bg-gradient text-white rounded-3 mb-4">
+    <h1 class="display-5 fw-bold">🐳 Azure Containers & Entra ID Demo</h1>
+    <p class="mb-0 fs-5">Учебный проект для демонстрации контейнеризации ASP.NET Core и корпоративной аутентификации через Microsoft Entra ID</p>
+</div>
+
+<div class="row g-4 mb-4">
+    <div class="col-md-4">
+        <div class="card h-100 border-primary">
+            <div class="card-body text-center">
+                <div class="display-1 text-primary mb-3">🐳</div>
+                <h5 class="card-title">Docker Containers</h5>
+                <p class="card-text">Современная контейнеризация .NET приложений с multi-stage build и оптимизацией размера образа.</p>
+                <a asp-controller="Info" asp-action="Index" class="btn btn-outline-primary btn-sm">Системная информация</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card h-100 border-info">
+            <div class="card-body text-center">
+                <div class="display-1 text-info mb-3">🔐</div>
+                <h5 class="card-title">Microsoft Entra ID</h5>
+                <p class="card-text">Корпоративная аутентификация через Azure Active Directory с OAuth 2.0 и OpenID Connect.</p>
+                @if (User.Identity?.IsAuthenticated == true)
+                {
+                    <a asp-controller="Secure" asp-action="Index" class="btn btn-info btn-sm text-white">Защищенная зона</a>
+                }
+                else
+                {
+                    <a asp-area="MicrosoftIdentity" asp-controller="Account" asp-action="SignIn" class="btn btn-info btn-sm text-white">Войти</a>
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card h-100 border-success">
+            <div class="card-body text-center">
+                <div class="display-1 text-success mb-3">☁️</div>
+                <h5 class="card-title">Azure Ready</h5>
+                <p class="card-text">Готовность к развертыванию в Azure App Service, Container Apps и Azure Kubernetes Service (AKS).</p>
+                <span class="badge bg-success">Готово к production</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row g-4 mb-4">
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-header bg-light">
+                <h5 class="mb-0"><i class="bi bi-check-circle"></i> Реализованные возможности</h5>
+            </div>
+            <div class="card-body">
+                <ul class="list-unstyled mb-0">
+                    <li class="mb-2">✅ <strong>Docker контейнеризация</strong> - Multi-stage build, health checks</li>
+                    <li class="mb-2">✅ <strong>Azure AD интеграция</strong> - OAuth 2.0, OpenID Connect</li>
+                    <li class="mb-2">✅ <strong>Claims-based authorization</strong> - Доступ к данным пользователя</li>
+                    <li class="mb-2">✅ <strong>Environment configuration</strong> - Безопасное управление секретами</li>
+                    <li class="mb-2">✅ <strong>Health monitoring</strong> - Автоматическая проверка работоспособности</li>
+                    <li class="mb-0">✅ <strong>Production ready</strong> - Готово к развертыванию в Azure</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-header bg-light">
+                <h5 class="mb-0"><i class="bi bi-book"></i> Учебные темы</h5>
+            </div>
+            <div class="card-body">
+                <div class="mb-3">
+                    <h6 class="text-primary mb-2">🐳 Docker & Containers</h6>
+                    <small class="text-muted">Dockerfile, docker-compose, Azure Container Registry, multi-stage builds</small>
+                </div>
+                <div class="mb-3">
+                    <h6 class="text-info mb-2">🔐 Identity & Security</h6>
+                    <small class="text-muted">Microsoft Entra ID, App Registration, OAuth 2.0, Claims, RBAC</small>
+                </div>
+                <div class="mb-0">
+                    <h6 class="text-success mb-2">☁️ Azure Services (AZ-900)</h6>
+                    <small class="text-muted">App Service, Container Apps, AKS, Key Vault, Managed Identity</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (User.Identity?.IsAuthenticated == true)
+{
+    <div class="alert alert-success d-flex align-items-center" role="alert">
+        <i class="bi bi-check-circle-fill me-2 fs-4"></i>
+        <div>
+            <strong>Вы вошли в систему!</strong> Добро пожаловать, <strong>@User.Identity.Name</strong>
+            <br />
+            <small>Перейдите в <a asp-controller="Secure" asp-action="Index" class="alert-link">Защищенную зону</a>, чтобы увидеть ваши claims.</small>
+        </div>
+    </div>
+}
+else
+{
+    <div class="alert alert-info d-flex align-items-center" role="alert">
+        <i class="bi bi-info-circle-fill me-2 fs-4"></i>
+        <div>
+            <strong>Демонстрация аутентификации</strong><br />
+            <small>Нажмите <a asp-area="MicrosoftIdentity" asp-controller="Account" asp-action="SignIn" class="alert-link">"Войти через Entra ID"</a> в правом верхнем углу, чтобы протестировать OAuth 2.0 flow.</small>
+        </div>
+    </div>
+}
+
+<div class="card bg-light">
+    <div class="card-body">
+        <h5 class="card-title"><i class="bi bi-rocket"></i> Быстрый старт</h5>
+        <p class="card-text mb-3">Для запуска проекта локально через Docker:</p>
+        <ol class="mb-3">
+            <li>Создайте App Registration в Azure Portal</li>
+            <li>Скопируйте <code>.env.example</code> в <code>.env</code> и заполните credentials</li>
+            <li>Запустите: <code>.\start-docker.ps1</code> или <code>docker-compose up -d</code></li>
+            <li>Откройте <a href="http://localhost:5000" target="_blank">http://localhost:5000</a></li>
+        </ol>
+        <a href="https://github.com/yourrepo/blob/main/QUICKSTART.md" class="btn btn-primary btn-sm" target="_blank">
+            <i class="bi bi-github"></i> Подробная инструкция
+        </a>
+        <a href="https://github.com/yourrepo/blob/main/PRESENTATION.md" class="btn btn-secondary btn-sm" target="_blank">
+            <i class="bi bi-file-slides"></i> Презентация
+        </a>
+    </div>
+</div>

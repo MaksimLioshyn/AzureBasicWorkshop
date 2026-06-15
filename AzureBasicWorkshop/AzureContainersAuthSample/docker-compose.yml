@@ -1,0 +1,25 @@
+version: "3.9"
+
+services:
+  webapp:
+    build:
+      context: ./WebApp
+      dockerfile: Dockerfile
+    image: azurecontainersauthsample/webapp:local
+    container_name: azure-containers-auth-webapp
+    ports:
+      - "5000:8080"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      AzureAd__Instance: https://login.microsoftonline.com/
+      AzureAd__TenantId: ${AZURE_TENANT_ID:-common}
+      AzureAd__ClientId: ${AZURE_CLIENT_ID:-11111111-1111-1111-1111-111111111111}
+      AzureAd__ClientSecret: ${AZURE_CLIENT_SECRET:-local-dev-secret}
+      AzureAd__CallbackPath: /signin-oidc
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s

@@ -1,0 +1,39 @@
+apiVersion: 2021-10-01
+location: westeurope
+name: azdemo-aci-webapp
+properties:
+  containers:
+    - name: webapp
+      properties:
+        image: <acr-login-server>/webapp:latest
+        ports:
+          - port: 8080
+        resources:
+          requests:
+            cpu: 1
+            memoryInGB: 1.5
+        environmentVariables:
+          - name: ASPNETCORE_ENVIRONMENT
+            value: Production
+          - name: AzureAd__Instance
+            value: https://login.microsoftonline.com/
+          - name: AzureAd__TenantId
+            value: <tenant-id>
+          - name: AzureAd__ClientId
+            value: <client-id>
+          - name: AzureAd__CallbackPath
+            value: /signin-oidc
+  osType: Linux
+  restartPolicy: Always
+  ipAddress:
+    type: Public
+    ports:
+      - protocol: TCP
+        port: 8080
+  imageRegistryCredentials:
+    - server: <acr-login-server>
+      username: <acr-username>
+      password: <acr-password>
+tags:
+  environment: demo
+  workload: containers-auth

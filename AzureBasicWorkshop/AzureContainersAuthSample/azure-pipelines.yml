@@ -1,0 +1,42 @@
+trigger:
+  branches:
+    include:
+      - main
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+  imageName: webapp
+  containerRegistry: <acr-name>.azurecr.io
+
+steps:
+  - task: UseDotNet@2
+    inputs:
+      packageType: sdk
+      version: 8.0.x
+
+  - script: dotnet build AzureContainersAuthSample.slnx --configuration Release
+    displayName: Build solution
+
+  - task: Docker@2
+    displayName: Build and push image
+    inputs:
+      command: buildAndPush
+      repository: $(imageName)
+      dockerfile: WebApp/Dockerfile
+      containerRegistry: <azure-devops-service-connection>
+      tags: |
+        $(Build.BuildId)
+
+  - task: AzureCLI@2
+    displayName: Deploy image to App Service
+    inputs:
+      azureSubscription: <azure-devops-service-connection>
+      scriptType: bash
+      scriptLocation: inlineScript
+      inlineScript: |
+        az webapp config container set \
+          --resource-group <resource-group-name> \
+          --name <web-app-name> \
+          --container-image-name $(containerRegistry)/$(imageName):$(Build.BuildId)
