@@ -1,0 +1,14 @@
+{
+  "requiredTags": [
+    "Environment",
+    "CostCenter",
+    "Owner",
+    "DataClassification"
+  ],
+  "sampleValues": {
+    "Environment": "Prod",
+    "CostCenter": "IT-Platform",
+    "Owner": "platform-team@contoso.com",
+    "DataClassification": "Internal"
+  }
+}

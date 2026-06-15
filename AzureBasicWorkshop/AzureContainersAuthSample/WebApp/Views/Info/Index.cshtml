@@ -1,0 +1,183 @@
+@model WebApp.Controllers.SystemInfoViewModel
+
+@{
+    ViewData["Title"] = "Системная информация";
+}
+
+<div class="mb-4">
+    <h1 class="display-6">Системная информация</h1>
+    <p class="text-muted mb-0">Информация о среде выполнения и конфигурации приложения.</p>
+</div>
+
+<div class="row g-4">
+    <!-- Docker Status -->
+    <div class="col-md-6">
+        <div class="card h-100">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">
+                    <i class="bi bi-box-seam"></i> Docker Status
+                </h5>
+            </div>
+            <div class="card-body">
+                <dl class="row mb-0">
+                    <dt class="col-sm-5">Запущено в Docker:</dt>
+                    <dd class="col-sm-7">
+                        @if (Model.IsRunningInDocker)
+                        {
+                            <span class="badge bg-success">✓ Да</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-warning">✗ Нет (локально)</span>
+                        }
+                    </dd>
+
+                    <dt class="col-sm-5">Container Host:</dt>
+                    <dd class="col-sm-7"><code>@Model.HostName</code></dd>
+
+                    <dt class="col-sm-5">Process ID:</dt>
+                    <dd class="col-sm-7"><code>@Model.ProcessId</code></dd>
+
+                    <dt class="col-sm-5">Memory (Working Set):</dt>
+                    <dd class="col-sm-7"><code>@Model.WorkingSet MB</code></dd>
+
+                    <dt class="col-sm-5">Uptime:</dt>
+                    <dd class="col-sm-7"><code>@Model.Uptime.ToString(@"hh\:mm\:ss")</code></dd>
+
+                    <dt class="col-sm-5">Start Time:</dt>
+                    <dd class="col-sm-7 mb-0"><code>@Model.StartTime.ToString("yyyy-MM-dd HH:mm:ss")</code></dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+
+    <!-- Azure AD Configuration -->
+    <div class="col-md-6">
+        <div class="card h-100">
+            <div class="card-header bg-info text-white">
+                <h5 class="mb-0">
+                    <i class="bi bi-shield-lock"></i> Azure AD Configuration
+                </h5>
+            </div>
+            <div class="card-body">
+                <dl class="row mb-0">
+                    <dt class="col-sm-5">Instance:</dt>
+                    <dd class="col-sm-7"><code class="text-break">@Model.AzureAdInstance</code></dd>
+
+                    <dt class="col-sm-5">Tenant ID:</dt>
+                    <dd class="col-sm-7">
+                        <code class="text-break">@Model.AzureAdTenantId</code>
+                        @if (Model.AzureAdTenantId == "common")
+                        {
+                            <br /><small class="text-muted">(мультитенантный)</small>
+                        }
+                    </dd>
+
+                    <dt class="col-sm-5">Client ID:</dt>
+                    <dd class="col-sm-7"><code class="text-break">@Model.AzureAdClientId</code></dd>
+
+                    <dt class="col-sm-5">Client Secret:</dt>
+                    <dd class="col-sm-7 mb-0">
+                        @if (Model.HasClientSecret)
+                        {
+                            <span class="badge bg-success">✓ Настроен</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-danger">✗ Отсутствует</span>
+                        }
+                    </dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+
+    <!-- .NET Runtime -->
+    <div class="col-md-6">
+        <div class="card h-100">
+            <div class="card-header bg-success text-white">
+                <h5 class="mb-0">
+                    <i class="bi bi-code-square"></i> .NET Runtime
+                </h5>
+            </div>
+            <div class="card-body">
+                <dl class="row mb-0">
+                    <dt class="col-sm-5">Framework:</dt>
+                    <dd class="col-sm-7"><code>@Model.FrameworkDescription</code></dd>
+
+                    <dt class="col-sm-5">OS:</dt>
+                    <dd class="col-sm-7"><code class="text-break">@Model.OSDescription</code></dd>
+
+                    <dt class="col-sm-5">Architecture:</dt>
+                    <dd class="col-sm-7"><code>@Model.ProcessArchitecture</code></dd>
+
+                    <dt class="col-sm-5">Environment:</dt>
+                    <dd class="col-sm-7 mb-0">
+                        @if (Model.AspNetCoreEnvironment == "Development")
+                        {
+                            <span class="badge bg-warning">Development</span>
+                        }
+                        else if (Model.AspNetCoreEnvironment == "Production")
+                        {
+                            <span class="badge bg-success">Production</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-secondary">@Model.AspNetCoreEnvironment</span>
+                        }
+                    </dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+
+    <!-- Environment Variables -->
+    <div class="col-md-6">
+        <div class="card h-100">
+            <div class="card-header bg-secondary text-white">
+                <h5 class="mb-0">
+                    <i class="bi bi-gear"></i> Рекомендации
+                </h5>
+            </div>
+            <div class="card-body">
+                <h6>Проверьте конфигурацию:</h6>
+                <ul class="mb-3">
+                    <li>
+                        @if (Model.IsRunningInDocker)
+                        {
+                            <text>✓ Приложение запущено в Docker-контейнере</text>
+                        }
+                        else
+                        {
+                            <text>ℹ Приложение запущено локально (не в Docker)</text>
+                        }
+                    </li>
+                    <li>
+                        @if (Model.HasClientSecret && Model.AzureAdClientId != "11111111-1111-1111-1111-111111111111")
+                        {
+                            <text>✓ Azure AD настроен</text>
+                        }
+                        else
+                        {
+                            <text>⚠ Azure AD требует настройки</text>
+                        }
+                    </li>
+                </ul>
+
+                <h6>Для работы с Azure AD:</h6>
+                <ol class="mb-0 small">
+                    <li>Создайте App Registration в Azure Portal</li>
+                    <li>Добавьте Redirect URI: <code>http://localhost:5000/signin-oidc</code></li>
+                    <li>Настройте переменные окружения в <code>.env</code></li>
+                    <li>Перезапустите контейнер: <code>docker-compose restart</code></li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="alert alert-info mt-4">
+    <strong><i class="bi bi-info-circle"></i> Совет:</strong> 
+    Эта страница помогает убедиться, что приложение корректно запущено в Docker и настроено для работы с Azure AD.
+    Используйте её для диагностики проблем с конфигурацией.
+</div>

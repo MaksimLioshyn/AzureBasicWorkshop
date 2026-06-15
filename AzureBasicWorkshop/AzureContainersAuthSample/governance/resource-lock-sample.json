@@ -1,0 +1,9 @@
+{
+  "type": "Microsoft.Authorization/locks",
+  "apiVersion": "2020-05-01",
+  "name": "DoNotDelete",
+  "properties": {
+    "level": "CanNotDelete",
+    "notes": "Protect critical production resource from accidental deletion."
+  }
+}

@@ -1,5 +1,6 @@
 <Solution>
   <Project Path="AzureBasicWebApplication/AzureBasicWebApplication.csproj" />
+  <Project Path="AzureContainersAuthSample/WebApp/WebApp.csproj" />
   <Project Path="AzureFunctionsAndStorageSample/AzureFunctionsAndStorageSample.csproj" />
   <Project Path="AzureFunctionsDemo/AzureFunctionsDemo.csproj" />
   <Project Path="MessageBrockers/FunctionProcessor/FunctionProcessor.csproj" />
@@ -8,4 +9,5 @@
   <Project Path="TestWebApplication/TestWebApplication.csproj" />
   <Project Path="WebApplication1/WebApplication1.csproj" />
   <Project Path="WebApplication2/WebApplication2.csproj" />
+  <Project Path="WebApplication3/WebApplication3.csproj" Id="1c571e77-f864-458a-9980-850d6e8c44aa" />
 </Solution>
