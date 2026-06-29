@@ -1,0 +1,19 @@
+Step 1: Basic Prompt in Copilot Chat
+======================================
+
+Use this prompt in Copilot chat (Ctrl+Shift+I):
+
+---
+
+@workspace Analyze the project structure and explain what components are there. 
+Give me a list of the main files and their purpose.
+
+---
+
+Expected result:
+- Copilot will analyze your workspace
+- Offers a description of the structure
+- Shows which files are important
+- Explains dependencies between components
+
+This is a basic level of interaction, without any instructions or extensions.
