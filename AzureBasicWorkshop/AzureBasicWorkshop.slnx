@@ -3,6 +3,8 @@
   <Project Path="AzureContainersAuthSample/WebApp/WebApp.csproj" />
   <Project Path="AzureFunctionsAndStorageSample/AzureFunctionsAndStorageSample.csproj" />
   <Project Path="AzureFunctionsDemo/AzureFunctionsDemo.csproj" />
+  <Project Path="AzureOpenAIConsoleDemoWorkflow.Tests/AzureOpenAIConsoleDemoWorkflow.Tests.csproj" Id="f8890cab-8505-43e8-abba-51411cdf6181" />
+  <Project Path="AzureOpenAIConsoleDemoWorkflow/AzureOpenAIConsoleDemoWorkflow.csproj" Id="0cf5ae26-ab83-425c-8a59-908af0e9e5f6" />
   <Project Path="MessageBrockers/FunctionProcessor/FunctionProcessor.csproj" />
   <Project Path="MessageBrockers/SharedContracts/SharedContracts.csproj" />
   <Project Path="MessageBrockers/WebAppGateway/WebAppGateway.csproj" />

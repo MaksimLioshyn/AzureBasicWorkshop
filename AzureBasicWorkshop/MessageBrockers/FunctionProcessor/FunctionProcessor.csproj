@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <AzureFunctionsVersion>v4</AzureFunctionsVersion>
     <OutputType>Exe</OutputType>
     <ImplicitUsings>enable</ImplicitUsings>
@@ -9,12 +9,12 @@
 
   <ItemGroup>
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
-    <PackageReference Include="Microsoft.Azure.Functions.Worker" Version="2.0.0" />
-    <PackageReference Include="Microsoft.Azure.Functions.Worker.Extensions.EventGrid" Version="3.4.3" />
+    <PackageReference Include="Microsoft.Azure.Functions.Worker" Version="2.52.0" />
+    <PackageReference Include="Microsoft.Azure.Functions.Worker.Extensions.EventGrid" Version="3.6.0" />
     <PackageReference Include="Microsoft.Azure.Functions.Worker.Extensions.EventHubs" Version="6.5.0" />
-    <PackageReference Include="Microsoft.Azure.Functions.Worker.Extensions.Http" Version="3.2.0" />
-    <PackageReference Include="Microsoft.Azure.Functions.Worker.Extensions.ServiceBus" Version="5.17.0" />
-    <PackageReference Include="Microsoft.Azure.Functions.Worker.Sdk" Version="2.0.0" OutputItemType="Analyzer" />
+    <PackageReference Include="Microsoft.Azure.Functions.Worker.Extensions.Http" Version="3.3.0" />
+    <PackageReference Include="Microsoft.Azure.Functions.Worker.Extensions.ServiceBus" Version="5.24.0" />
+    <PackageReference Include="Microsoft.Azure.Functions.Worker.Sdk" Version="2.0.7" OutputItemType="Analyzer" />
   </ItemGroup>
 
   <ItemGroup>
