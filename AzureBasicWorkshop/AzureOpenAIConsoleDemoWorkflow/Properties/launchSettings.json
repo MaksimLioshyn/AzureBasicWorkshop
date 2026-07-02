@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "AzureOpenAIConsoleDemoWorkflow": {
+      "commandName": "Project"
+    },
+    "Container (Dockerfile)": {
+      "commandName": "Docker"
+    }
+  }
+}
