@@ -10,11 +10,12 @@ When creating or modifying a class in the `AzureOpenAIConsoleDemoWorkflow` proje
 1. Start from a structured task request using `task-intake`.
 2. Call `create-task` to bootstrap the base production solution.
 3. Keep the implementation small and reviewable.
+4. Do not add XML documentation during bootstrap.
 
 **Phase 2: Complete Task Workflow**
 After bootstrap approval, invoke `complete-task-workflow` which runs:
 1. Create placeholder test stubs for every public method.
-2. Add English XML documentation.
+2. Add English XML documentation (via `xml-doc-generator`).
 3. Record changelog entries.
 4. After final approval, expand tests to maximum practical coverage.
 
