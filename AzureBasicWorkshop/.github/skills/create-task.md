@@ -20,8 +20,8 @@ When the task is first received:
 ## Output Requirements
 - Produce the base solution first.
 - Keep bootstrap minimal and focused.
+- Do not add XML documentation during bootstrap (deferred to completion phase).
 - Do not expand coverage before approval.
-- Use English for documentation and log entries.
 
 ## Next Step
 After bootstrap is complete and approved, invoke `complete-task-workflow`.
